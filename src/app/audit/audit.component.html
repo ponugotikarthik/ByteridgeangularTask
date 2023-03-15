@@ -1,0 +1,24 @@
+<h1>Hi {{currentUser.firstName}}!</h1>
+<p>You're logged in with Angular 8!!</p>
+<h3>All login audit :</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+      <tr >
+        <th scope="col">User</th>
+        <th scope="col">User Id</th>
+        <th scope="col">LoginTime</th>
+        <th scope="col">LogoutTime</th>
+        <th scope="col">IP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let audit of pageOfItemslist">
+        <th scope="row">{{audit.user}}</th>
+        <td>{{audit._id}}</td>
+        <td>{{audit.loginTime}}</td>
+        <td>{{audit.logoutTime}}</td>
+        <td>{{audit.ip}}</td>
+      </tr>
+      </tbody>
+</table>
+<jw-pagination [items]="audits" (changePage)="onChangePage($event)"></jw-pagination>

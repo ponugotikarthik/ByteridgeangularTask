@@ -1,0 +1,40 @@
+﻿<h1>Hi {{currentUser.firstName}}!</h1>
+<p>You're logged in!!</p>
+<h3>All registered users:</h3>
+<div class="d-flex justify-content-between">
+    <div>
+        <input type="text" class="form-control" id="usr" placeholder="Search" [(ngModel)]="searchText">
+    </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-danger">Action</button>
+        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">DD/MM/YYYY</a>
+          <a class="dropdown-item" href="#">hh;mm:ss</a>
+        </div>
+      </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+      <tr >
+        <th scope="col" (click)="sortData()">UserName <span class="glyphicon glyphicon-circle-arrow-up"></span></th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Role</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of pageOfItems | search:searchText">
+        <th scope="row">{{user.username}}</th>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.lastName}}</td>
+        <td><a (click)="deleteUser(user.id)" class="badge badge-danger" *ngIf="currentUser.role == 'Auditor'">Delete</a></td>
+      </tr>
+      </tbody>  
+</table>
+<jw-pagination [items]="users" (changePage)="onChangePage($event)"></jw-pagination>
